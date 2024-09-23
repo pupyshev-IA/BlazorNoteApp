@@ -1,0 +1,112 @@
+﻿.section-header {
+    font-family: 'Segoe UI';
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.btn {
+    font-size: 18px;
+    text-align: center;
+    color: white;
+    padding: 7px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.pagination-btn {
+    font-size: 16px;
+    color: black;
+}
+
+.search-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin: 20px;
+}
+
+.search-input {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-btn {
+    color: black;
+}
+
+.new-note-btn {
+    background: #50d318;
+    margin-bottom: 10px;
+}
+
+.notes-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-container {
+    width: 55%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+    .note-container:hover .note-actions {
+        display:flex;
+    }
+
+.note-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 5px 15px 5px 5px;
+    box-sizing: border-box;
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-date {
+    font-size: 12px;
+    top: 0;
+    right: 0;
+}
+
+.note-actions {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 5px;
+}
+
+.act-btn {
+    width: 50px;
+    height: 30px;
+    font-size: 14px;
+    background: #ccc;
+}
+
+.edit-btn {
+    background: #ff6a00;
+}
+
+.delete-btn {
+    background: #ff0000;
+}
