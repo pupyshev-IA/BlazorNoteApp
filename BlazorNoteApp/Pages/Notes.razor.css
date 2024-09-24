@@ -1,50 +1,106 @@
-﻿.section-header {
+﻿body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.section-header {
     font-family: 'Segoe UI';
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
+
+    .section-header h1 {
+        font-size: 36px;
+        color: #333;
+    }
+
+    .section-header p {
+        font-size: 18px;
+        color: #777;
+    }
 
 .btn {
     font-size: 18px;
     text-align: center;
     color: white;
-    padding: 7px;
+    padding: 10px 20px;
     cursor: pointer;
     border: none;
     border-radius: 5px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+    .btn:hover {
+        transform: scale(1.05);
+    }
+
+.search-btn {
+    background-color: #333;
+}
+
+.new-note-btn {
+    background-color: #50d318;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .new-note-btn .plus-icon {
+        font-size: 20px;
+        margin-right: 8px;
+    }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 10px;
 }
 
 .pagination-btn {
     font-size: 16px;
-    color: black;
+    background-color: #cac8c8;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+    .pagination-btn:hover {
+        background-color: #ddd;
+        transform: scale(1.05);
+    }
+
+.page-number {
+    font-weight: bold;
 }
 
 .search-area {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
-    margin: 20px;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 .search-input {
     width: 50%;
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    transition: border-color 0.3s ease;
 }
 
-.search-btn {
-    color: black;
-}
-
-.new-note-btn {
-    background: #50d318;
-    margin-bottom: 10px;
-}
+    .search-input:focus {
+        outline: none;
+        border-color: #50d318;
+    }
 
 .notes-list {
     display: flex;
@@ -58,55 +114,93 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 10px;
+    padding: 20px;
     margin-bottom: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-    .note-container:hover .note-actions {
-        display:flex;
+    .note-container:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
 
 .note-item {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
-    padding: 5px 15px 5px 5px;
-    box-sizing: border-box;
 }
 
 .note-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
+}
+
+.note-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
 }
 
 .note-date {
-    font-size: 12px;
-    top: 0;
-    right: 0;
+    font-size: 14px;
+    color: #999;
 }
+
+.note-content {
+    font-size: 16px;
+    color: #555;
+}
+
+.note-title-input, .note-content-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+    .note-title-input:focus, .note-content-input:focus {
+        outline: none;
+        border-color: #50d318;
+    }
 
 .note-actions {
     display: none;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
-    padding: 5px 5px;
+    gap: 10px;
+}
+
+.note-container:hover .note-actions {
+    display: flex;
 }
 
 .act-btn {
-    width: 50px;
-    height: 30px;
+    width: 60px;
+    height: 35px;
     font-size: 14px;
-    background: #ccc;
+    border-radius: 5px;
+    transition: background 0.3s ease;
 }
 
 .edit-btn {
-    background: #ff6a00;
+    background-color: #ff6a00;
 }
 
 .delete-btn {
-    background: #ff0000;
+    background-color: #ff0000;
+}
+
+.save-btn {
+    background-color: #50d318;
+}
+
+.act-btn:hover {
+    opacity: 0.9;
 }

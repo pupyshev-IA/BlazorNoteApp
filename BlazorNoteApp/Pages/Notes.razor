@@ -7,74 +7,76 @@
 
 <PageTitle>Notes</PageTitle>
 
-<div class="section-header">
-    <h1>Notes</h1>
-    <p>All your notes are collected in this place</p>
-</div>
-
-<body>
-    <div class="search-area">
-        <input type="text" placeholder="search" class="search-input" @bind="searchText" />
-        <button class="btn search-btn" @onclick="SearchNote">Search</button>
-    </div>
-
-    <div>
-        <button class="btn new-note-btn" @onclick="AddNote">Add</button>
-    </div>
-
-    <div class="notes-list">
-        @foreach (var note in filtredNotes)
-        {
-            <div class="note-container">
-                <div class="note-item">
-                    <div class="note-header">
-                        @if (editNoteId == note.Id)
-                        {
-                            <input type="text" class="search-input" @bind="editNoteTitle"></input>
-                        }
-                        else
-                        {
-                            <h3>@note.Title</h3>
-                        }
-                        <span class="note-date">@note.CreatedAt.ToString("yyyy-MM-dd")</span>
-                    </div>
-                    <div class="note-content">
-                        @if (editNoteId == note.Id)
-                        {
-                            <input type="text" class="search-input" @bind="editNoteContent"></input>
-                        }
-                        else
-                        {
-                            <span>@note.Content</span>
-                        }
-                    </div>
-                </div>
-                <div class="note-actions">
-                    @if (editNoteId == note.Id)
-                    {
-                        <button class="btn act-btn edit-btn" @onclick="() => UpdateNote(note)">Save</button>
-                    }
-                    else
-                    {
-                        <button class="btn act-btn edit-btn" @onclick="() => StartEditing(note)">Edit</button>
-                    }
-                    <button class="btn act-btn delete-btn" @onclick="() => DeleteNote(note.Id)">Delete</button>
-                </div>
-            </div>
-        }
-    </div>
-
-    <div class="pagination">
-        <button class="btn pagination-btn" @onclick="PreviousPage" disabled="@(!CanGoPrevious())">Previous</button>
-        @for (ushort i = 1; i <= GetPagesCount(); i++)
-        {
+<div class="section-header"> 
+    <h1>Notes</h1> 
+    <p>All your notes are collected in one place</p> 
+</div> 
+ 
+<body> 
+    <div class="search-area"> 
+        <input type="text" placeholder="Search your notes..." class="search-input" @bind="searchText" /> 
+        <button class="btn search-btn" @onclick="SearchNote">Search</button> 
+    </div> 
+ 
+    <div class="new-note-area"> 
+        <button class="btn new-note-btn" @onclick="AddNote"> 
+            <span class="plus-icon">+</span> Add Note 
+        </button> 
+    </div> 
+ 
+    <div class="notes-list"> 
+        @foreach (var note in filtredNotes) 
+        { 
+            <div class="note-container"> 
+                <div class="note-item"> 
+                    <div class="note-header"> 
+                        @if (editNoteId == note.Id) 
+                        { 
+                            <input type="text" class="note-title-input" @bind="editNoteTitle" /> 
+                        } 
+                        else 
+                        { 
+                            <h3 class="note-title">@note.Title</h3> 
+                        } 
+                        <span class="note-date">@note.CreatedAt.ToString("yyyy-MM-dd")</span> 
+                    </div> 
+                    <div class="note-content"> 
+                        @if (editNoteId == note.Id) 
+                        { 
+                            <textarea class="note-content-input" @bind="editNoteContent"></textarea> 
+                        } 
+                        else 
+                        { 
+                            <p>@note.Content</p> 
+                        } 
+                    </div> 
+                </div> 
+                <div class="note-actions"> 
+                    @if (editNoteId == note.Id) 
+                    { 
+                        <button class="btn save-btn" @onclick="() => UpdateNote(note)">Save</button> 
+                    } 
+                    else 
+                    { 
+                        <button class="btn edit-btn" @onclick="() => StartEditing(note)">Edit</button> 
+                    } 
+                    <button class="btn delete-btn" @onclick="() => DeleteNote(note.Id)">Delete</button> 
+                </div> 
+            </div> 
+        } 
+    </div> 
+ 
+    <div class="pagination"> 
+        <button class="btn pagination-btn" @onclick="PreviousPage" disabled="@(!CanGoPrevious())">Previous</button> 
+        @for (ushort i = 1; i <= GetPagesCount(); i++) 
+        { 
             var pageNum = i;
-            <button class="btn pagination-btn" @onclick="() => GoToPage(pageNum)">
-                @i
-            </button>
-        }
-        <button class="btn pagination-btn" @onclick="NextPage" disabled="@(!CanGoNext())">Next</button>
-    </div>
+            <button class="btn pagination-btn page-number" @onclick="() => GoToPage(pageNum)">
+                @i 
+            </button> 
+        } 
+        <button class="btn pagination-btn" @onclick="NextPage" disabled="@(!CanGoNext())">Next</button> 
+    </div> 
 </body>
 
 @code {
