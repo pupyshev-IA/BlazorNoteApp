@@ -99,7 +99,7 @@
 </body>
 
 @code {
-    private const int ElementsPerPage = 10;
+    private const int ElementsPerPage = 15;
     private ushort currentPage = 1;
     private uint allItemsCount;
     private string searchText = "";
@@ -112,6 +112,7 @@
     private List<Note> notes = new List<Note>();
     private List<Note> filtredNotes => notes
         .Where(n => string.IsNullOrEmpty(searchText) || n.Title.Contains(searchText, StringComparison.OrdinalIgnoreCase))
+        .OrderByDescending(n => n.CreatedAt)
         .ToList();
 
 
@@ -184,8 +185,8 @@
         var result = await _service.Add(newNote);
         notes.Add(result);
 
-        CancelAddingNote();
-        await FetchPage();
+        ToggleAddingNote();
+        StateHasChanged();
     }
 
     private void CancelAddingNote()

@@ -1,6 +1,8 @@
 ﻿using BlazorNoteApp.Models;
 using Newtonsoft.Json;
 using System.Net.Http.Json;
+using System.Net.Mime;
+using System.Text;
 
 namespace BlazorNoteApp.Services
 {
@@ -13,20 +15,30 @@ namespace BlazorNoteApp.Services
             _baseUri = new Uri(baseUri);
         }
 
-        public Task<Note> Add(Note note)
+        public async Task<Note> Add(Note note)
         {
-            throw new NotImplementedException();
+            using var http = new HttpClient();
+
+            var relativeUri = new Uri("api/v1/notes/add", UriKind.Relative);
+            var uri = new Uri(_baseUri, relativeUri);
+            var content = new StringContent(JsonConvert.SerializeObject(note), Encoding.UTF8, MediaTypeNames.Application.Json);
+
+            var response = await http.PostAsync(uri, content);
+            var addedNote = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<Note>(addedNote);
         }
 
         public async Task Delete(long id)
         {
+            using var http = new HttpClient();
+
             var relativeUri = new Uri("api/v1/notes/delete", UriKind.Relative);
             var uriBuilder = new UriBuilder(new Uri(_baseUri, relativeUri))
             {
                 Query = $"id={id}"
             };
 
-            using var http = new HttpClient();
             await http.DeleteAsync(uriBuilder.Uri);
         }
 
@@ -37,13 +49,14 @@ namespace BlazorNoteApp.Services
 
         public async Task<Page<Note>> GetPage(ushort pageNumber, int itemsCount)
         {
+            using var http = new HttpClient();
+
             var relativeUri = new Uri("api/v1/notes/list", UriKind.Relative);
             var uriBuilder = new UriBuilder(new Uri(_baseUri, relativeUri))
             {
                 Query = $"pageNumber={pageNumber}&itemsCount={itemsCount}"
             };
 
-            using var http = new HttpClient();
             var response = await http.GetAsync(uriBuilder.Uri);
             var result = await response.Content.ReadAsStringAsync();
 
@@ -52,10 +65,11 @@ namespace BlazorNoteApp.Services
 
         public async Task<Note?> Update(Note note)
         {
+            using var http = new HttpClient();
+
             var relativeUri = new Uri("api/v1/notes/update", UriKind.Relative);
             var uri = new Uri(_baseUri, relativeUri);
 
-            using var http = new HttpClient();
             var response = await http.PutAsJsonAsync(uri, note);
             var result = await response.Content.ReadAsStringAsync();
 
