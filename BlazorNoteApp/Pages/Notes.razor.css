@@ -63,7 +63,7 @@
 
 .pagination-btn {
     font-size: 16px;
-    background-color: #cac8c8;
+    background-color: #bfbebe;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -72,7 +72,7 @@
 }
 
     .pagination-btn:hover {
-        background-color: #ddd;
+        background-color: #a3a3a3;
         transform: scale(1.05);
     }
 
@@ -177,6 +177,10 @@
     gap: 10px;
 }
 
+.adding-action {
+    flex-direction: row;
+}
+
 .note-container:hover .note-actions {
     display: flex;
 }
@@ -199,6 +203,10 @@
 
 .save-btn {
     background-color: #50d318;
+}
+
+.cancel-btn {
+    background-color: #ff0000;
 }
 
 .act-btn:hover {
